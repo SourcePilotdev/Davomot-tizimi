@@ -3,7 +3,7 @@ import { createRoot } from 'react-dom/client'
 import { HashRouter } from 'react-router-dom'
 import App from './App'
 import { ErrorBoundary } from './components/ErrorBoundary'
-import { applyTheme } from '@/lib/theme'
+import { applyTheme } from './lib/theme'
 import './index.css'
 
 // Baza ochilguncha tizim mavzusini qo'llaymiz: qorong'i rejimdagi foydalanuvchi oq "chaqnash" ko'rmasligi uchun.
