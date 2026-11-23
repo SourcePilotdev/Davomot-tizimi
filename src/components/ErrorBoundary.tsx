@@ -1,22 +1,49 @@
+
 import { Component, type ErrorInfo, type ReactNode } from 'react'
 
-interface Props { children: ReactNode }
-interface State { failed: boolean }
+interface Props {
+  children: ReactNode
+}
 
-/** Render xatolari butun ilovani oq ekranga tushirib qo'ymasligi uchun. */
+interface State {
+  hasError: boolean
+}
+
 export class ErrorBoundary extends Component<Props, State> {
-  state: State = { failed: false }
-  static getDerivedStateFromError(): State { return { failed: true } }
-  componentDidCatch(error: Error, info: ErrorInfo) { console.error('UI xatosi:', error, info.componentStack) }
+  state: State = {
+    hasError: false,
+  }
+
+  static getDerivedStateFromError(): State {
+    return { hasError: true }
+  }
+
+  componentDidCatch(error: Error, info: ErrorInfo) {
+    console.error('Application Error:', error, info)
+  }
+
   render() {
-    if (this.state.failed) return (
-      <main className="mx-auto flex min-h-dvh max-w-md flex-col items-center justify-center gap-3 p-6 text-center">
-        <h1 className="text-xl font-semibold">Ilovada xatolik yuz berdi</h1>
-        <p className="text-sm text-muted-foreground">Ma’lumotlaringiz lokal bazada saqlangan. Sahifani qayta yuklang.</p>
-        <button className="min-h-12 rounded-lg bg-primary px-6 font-medium text-primary-foreground" onClick={() => window.location.reload()}>Qayta yuklash</button>
-      </main>
-    )
+    if (this.state.hasError) {
+      return (
+        <div style={{
+          minHeight: '100vh',
+          display: 'flex',
+          flexDirection: 'column',
+          alignItems: 'center',
+          justifyContent: 'center',
+          padding: '24px',
+          textAlign: 'center',
+          fontFamily: 'sans-serif',
+        }}>
+          <h2>Tizimda xatolik yuz berdi</h2>
+          <p>Sahifani qayta yuklab ko‘ring.</p>
+          <button onClick={() => window.location.reload()}>
+            Qayta yuklash
+          </button>
+        </div>
+      )
+    }
+
     return this.props.children
   }
 }
-
