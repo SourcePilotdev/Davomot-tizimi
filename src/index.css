@@ -164,3 +164,78 @@
     print-color-adjust: exact;
   }
 }
+
+
+:root {
+  --radius: 0.75rem;
+
+  --background: #f5f6fc;
+  --foreground: #20213a;
+  --card: #ffffff;
+  --card-foreground: #20213a;
+  --popover: #ffffff;
+  --popover-foreground: #20213a;
+
+  --primary: #7652e8;
+  --primary-foreground: #ffffff;
+
+  --secondary: #eae6fb;
+  --secondary-foreground: #6042c5;
+
+  --muted: #eeeff5;
+  --muted-foreground: #73758d;
+  --accent: #eee9ff;
+  --accent-foreground: #6848d6;
+
+  --destructive: #dc4545;
+  --destructive-foreground: #ffffff;
+
+  --border: #e1e2ed;
+  --input: #e1e2ed;
+  --ring: #9678f4;
+
+  --present: #159b68;
+  --present-foreground: #ffffff;
+  --absent: #dc4545;
+  --absent-foreground: #ffffff;
+  --late: #e9a323;
+  --late-foreground: #28213a;
+  --excused: #3985e8;
+  --excused-foreground: #ffffff;
+}
+
+.dark {
+  --background: #10101c;
+  --foreground: #f0efff;
+  --card: #19192a;
+  --card-foreground: #f0efff;
+  --popover: #1d1b30;
+  --popover-foreground: #f0efff;
+
+  --primary: #9875ff;
+  --primary-foreground: #ffffff;
+
+  --secondary: #29233f;
+  --secondary-foreground: #c8b8ff;
+
+  --muted: #222235;
+  --muted-foreground: #a5a2bd;
+  --accent: #30264c;
+  --accent-foreground: #d6c9ff;
+
+  --destructive: #ff7777;
+  --destructive-foreground: #260e16;
+
+  --border: #34314d;
+  --input: #393451;
+  --ring: #a78bfa;
+
+  --present: #35c98b;
+  --present-foreground: #071c14;
+  --absent: #ff7777;
+  --absent-foreground: #260e16;
+  --late: #f6c45e;
+  --late-foreground: #2b1c06;
+  --excused: #71aaff;
+  --excused-foreground: #101b31;
+}
