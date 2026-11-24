@@ -51,122 +51,6 @@
 }
 
 :root {
-  --radius: 0.5rem;
-
-  --background: #f4f6f8;
-  --foreground: #1b2a49;
-  --card: #ffffff;
-  --card-foreground: #1b2a49;
-  --popover: #ffffff;
-  --popover-foreground: #1b2a49;
-  --primary: #1b2a49;
-  --primary-foreground: #f4f6f8;
-  --secondary: #e6eaf0;
-  --secondary-foreground: #1b2a49;
-  --muted: #e9edf2;
-  --muted-foreground: #5a6579;
-  --accent: #e6eaf0;
-  --accent-foreground: #1b2a49;
-  --destructive: #c62f2f;
-  --destructive-foreground: #ffffff;
-  --border: #d8dee7;
-  --input: #d8dee7;
-  --ring: #6b7a99;
-
-  --present: #17803f;
-  --present-foreground: #ffffff;
-  --absent: #d1342f;
-  --absent-foreground: #ffffff;
-  --late: #f2b705;
-  --late-foreground: #1b2a49;
-  --excused: #2f6fde;
-  --excused-foreground: #ffffff;
-}
-
-.dark {
-  --background: #0e1524;
-  --foreground: #e7ebf3;
-  --card: #151e31;
-  --card-foreground: #e7ebf3;
-  --popover: #151e31;
-  --popover-foreground: #e7ebf3;
-  --primary: #e7ebf3;
-  --primary-foreground: #0e1524;
-  --secondary: #1f2a42;
-  --secondary-foreground: #e7ebf3;
-  --muted: #1b2538;
-  --muted-foreground: #9aa6bd;
-  --accent: #1f2a42;
-  --accent-foreground: #e7ebf3;
-  --destructive: #f0716b;
-  --destructive-foreground: #0e1524;
-  --border: #2a3650;
-  --input: #2a3650;
-  --ring: #6b7a99;
-
-  --present: #3fbf7a;
-  --present-foreground: #0e1524;
-  --absent: #f0716b;
-  --absent-foreground: #0e1524;
-  --late: #f2c14e;
-  --late-foreground: #0e1524;
-  --excused: #6ea2f5;
-  --excused-foreground: #0e1524;
-}
-
-@layer base {
-  * {
-    @apply border-border outline-ring/50;
-  }
-
-  /* Klaviatura bilan ishlaganda fokus hamma joyda ko'rinadi (:where — o'ziga xos sinflar ustidan yozishga xalaqit bermaydi) */
-  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
-    outline: 2px solid var(--ring);
-    outline-offset: 2px;
-  }
-
-  html {
-    /* Telefonda: bosishdagi kulrang yaltirash va 300ms kechikishni olib tashlaydi */
-    -webkit-tap-highlight-color: transparent;
-    touch-action: manipulation;
-  }
-
-  body {
-    @apply bg-background text-foreground antialiased;
-    overscroll-behavior-y: none;
-    /* Raqamlar (davomat foizi, sanalar) ustunlarda tekis turishi uchun */
-    font-variant-numeric: tabular-nums;
-  }
-}
-
-/* Chop etish / PDF: har doim yorug' mavzu (qorong'i mavzuda matn oq bo'lib, qog'ozda ko'rinmay qolmasligi uchun)
-   va ranglar (holat chiziqlari) saqlanadi. */
-@media print {
-  .dark {
-    color-scheme: light;
-    --background: #ffffff;
-    --foreground: #1b2a49;
-    --card: #ffffff;
-    --card-foreground: #1b2a49;
-    --muted: #e9edf2;
-    --muted-foreground: #5a6579;
-    --border: #d8dee7;
-    --primary: #1b2a49;
-    --primary-foreground: #f4f6f8;
-    --present: #17803f;
-    --absent: #d1342f;
-    --late: #f2b705;
-    --excused: #2f6fde;
-  }
-
-  * {
-    -webkit-print-color-adjust: exact;
-    print-color-adjust: exact;
-  }
-}
-
-
-:root {
   --radius: 0.75rem;
 
   --background: #f5f6fc;
@@ -239,3 +123,58 @@
   --excused: #71aaff;
   --excused-foreground: #101b31;
 }
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  /* Klaviatura bilan ishlaganda fokus hamma joyda ko'rinadi (:where — o'ziga xos sinflar ustidan yozishga xalaqit bermaydi) */
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  html {
+    /* Telefonda: bosishdagi kulrang yaltirash va 300ms kechikishni olib tashlaydi */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    overscroll-behavior-y: none;
+    /* Raqamlar (davomat foizi, sanalar) ustunlarda tekis turishi uchun */
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+/* Chop etish / PDF: har doim yorug' mavzu (qorong'i mavzuda matn oq bo'lib, qog'ozda ko'rinmay qolmasligi uchun)
+   va ranglar (holat chiziqlari) saqlanadi. */
+@media print {
+  .dark {
+    color-scheme: light;
+    --background: #ffffff;
+    --foreground: #1b2a49;
+    --card: #ffffff;
+    --card-foreground: #1b2a49;
+    --muted: #e9edf2;
+    --muted-foreground: #5a6579;
+    --border: #d8dee7;
+    --primary: #1b2a49;
+    --primary-foreground: #f4f6f8;
+    --present: #17803f;
+    --absent: #d1342f;
+    --late: #f2b705;
+    --excused: #2f6fde;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
+
+
+
