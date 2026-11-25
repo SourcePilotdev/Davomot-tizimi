@@ -1,0 +1,201 @@
+@import "tailwindcss";
+@import "tw-animate-css";
+
+@custom-variant dark (&:is(.dark *));
+
+/*
+ * DIZAYN TOKENLARI
+ *
+ * G'oya: "qog'ozdagi siyoh". Rang faqat davomat holatini bildiradi
+ * (keldi / kelmadi / kech keldi / sababli) — qolgan hamma narsa siyoh va qog'oz.
+ * Shu sababli asosiy (primary) rang ko'k emas, to'q siyoh rangi: u "Sababli" (ko'k)
+ * holati bilan adashtirilmaydi.
+ *
+ * shadcn/ui komponentlari shu o'zgaruvchilardan foydalanadi (components.json).
+ */
+@theme inline {
+  --radius-sm: calc(var(--radius) - 4px);
+  --radius-md: calc(var(--radius) - 2px);
+  --radius-lg: var(--radius);
+  --radius-xl: calc(var(--radius) + 4px);
+
+  --color-background: var(--background);
+  --color-foreground: var(--foreground);
+  --color-card: var(--card);
+  --color-card-foreground: var(--card-foreground);
+  --color-popover: var(--popover);
+  --color-popover-foreground: var(--popover-foreground);
+  --color-primary: var(--primary);
+  --color-primary-foreground: var(--primary-foreground);
+  --color-secondary: var(--secondary);
+  --color-secondary-foreground: var(--secondary-foreground);
+  --color-muted: var(--muted);
+  --color-muted-foreground: var(--muted-foreground);
+  --color-accent: var(--accent);
+  --color-accent-foreground: var(--accent-foreground);
+  --color-destructive: var(--destructive);
+  --color-destructive-foreground: var(--destructive-foreground);
+  --color-border: var(--border);
+  --color-input: var(--input);
+  --color-ring: var(--ring);
+
+  /* Davomat holatlari (3-bosqichda ishlatiladi): bg-present, text-absent-foreground va h.k. */
+  --color-present: var(--present);
+  --color-present-foreground: var(--present-foreground);
+  --color-absent: var(--absent);
+  --color-absent-foreground: var(--absent-foreground);
+  --color-late: var(--late);
+  --color-late-foreground: var(--late-foreground);
+  --color-excused: var(--excused);
+  --color-excused-foreground: var(--excused-foreground);
+}
+
+:root {
+  --radius: 0.75rem;
+
+  --background: #f7f5ff;
+  --foreground: #211d38;
+  --card: #fffefe;
+  --card-foreground: #20213a;
+  --popover: #ffffff;
+  --popover-foreground: #20213a;
+
+  --primary: #7652f4;
+  --primary-foreground: #ffffff;
+
+  --secondary: #eee8ff;
+  --secondary-foreground: #6042c5;
+
+  --muted: #eeeff5;
+  --muted-foreground: #73758d;
+  --accent: #f0eaff;
+  --accent-foreground: #6848d6;
+
+  --destructive: #dc4545;
+  --destructive-foreground: #ffffff;
+
+  --border: #e1e2ed;
+  --input: #e1e2ed;
+  --ring: #9b7cff;
+
+  --present: #159b68;
+  --present-foreground: #ffffff;
+  --absent: #dc4545;
+  --absent-foreground: #ffffff;
+  --late: #e9a323;
+  --late-foreground: #28213a;
+  --excused: #3985e8;
+  --excused-foreground: #ffffff;
+}
+
+.dark {
+  --background: #0d1020;
+  --foreground: #f0efff;
+  --card: #171b30;
+  --card-foreground: #f0efff;
+  --popover: #1c2038;
+  --popover-foreground: #f0efff;
+
+  --primary: #9875ff;
+  --primary-foreground: #ffffff;
+
+  --secondary: #29233f;
+  --secondary-foreground: #c8b8ff;
+
+  --muted: #222235;
+  --muted-foreground: #a5a2bd;
+  --accent: #30264c;
+  --accent-foreground: #d6c9ff;
+
+  --destructive: #ff7777;
+  --destructive-foreground: #260e16;
+
+  --border: #343451;
+  --input: #393451;
+  --ring: #a78bfa;
+
+  --present: #35c98b;
+  --present-foreground: #071c14;
+  --absent: #ff7777;
+  --absent-foreground: #260e16;
+  --late: #f6c45e;
+  --late-foreground: #2b1c06;
+  --excused: #71aaff;
+  --excused-foreground: #101b31;
+}
+
+
+@layer base {
+  * {
+    @apply border-border outline-ring/50;
+  }
+
+  /* Klaviatura bilan ishlaganda fokus hamma joyda ko'rinadi (:where — o'ziga xos sinflar ustidan yozishga xalaqit bermaydi) */
+  :where(a, button, input, select, textarea, [tabindex]):focus-visible {
+    outline: 2px solid var(--ring);
+    outline-offset: 2px;
+  }
+
+  html {
+    /* Telefonda: bosishdagi kulrang yaltirash va 300ms kechikishni olib tashlaydi */
+    -webkit-tap-highlight-color: transparent;
+    touch-action: manipulation;
+  }
+
+  body {
+    @apply bg-background text-foreground antialiased;
+    background-image: radial-gradient(ellipse at 5% 0%, rgba(139, 92, 246, 0.10), transparent 32%), radial-gradient(ellipse at 95% 18%, rgba(6, 182, 212, 0.08), transparent 28%);
+    background-attachment: fixed;
+    overscroll-behavior-y: none;
+    /* Raqamlar (davomat foizi, sanalar) ustunlarda tekis turishi uchun */
+    font-variant-numeric: tabular-nums;
+  }
+}
+
+@layer utilities {
+  .app-shell {
+    isolation: isolate;
+  }
+
+  button, a {
+    -webkit-tap-highlight-color: transparent;
+  }
+
+  @media (prefers-reduced-motion: no-preference) {
+    .app-shell main > div > section,
+    .app-shell main > div > div {
+      animation: rise-in 420ms both;
+    }
+  }
+
+  @keyframes rise-in {
+    from { opacity: 0; transform: translateY(8px); }
+    to { opacity: 1; transform: translateY(0); }
+  }
+}
+
+/* Chop etish / PDF: har doim yorug' mavzu (qorong'i mavzuda matn oq bo'lib, qog'ozda ko'rinmay qolmasligi uchun)
+   va ranglar (holat chiziqlari) saqlanadi. */
+@media print {
+  .dark {
+    color-scheme: light;
+    --background: #ffffff;
+    --foreground: #1b2a49;
+    --card: #ffffff;
+    --card-foreground: #1b2a49;
+    --muted: #e9edf2;
+    --muted-foreground: #5a6579;
+    --border: #d8dee7;
+    --primary: #1b2a49;
+    --primary-foreground: #f4f6f8;
+    --present: #17803f;
+    --absent: #d1342f;
+    --late: #f2b705;
+    --excused: #2f6fde;
+  }
+
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+}
